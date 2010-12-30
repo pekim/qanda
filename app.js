@@ -44,8 +44,8 @@ if (!module.parent) {
   console.log("Express server listening on port %d", app.address().port)
 }
 
-var socket = io.listen(app); 
-var game = new games.createGame(socket, 30);
+var socket = io.listen(app);
+games.acceptClients(socket);
 
 var gameClients = gameClients.createClients(socket);
 gameClients.startIntergamePeriod();
