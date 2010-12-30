@@ -13,10 +13,19 @@ require(['urlparser', 'socket.io/socket.io.js'], function(urlParser) {
     
     socket.on('message', function(message) {
       if (message.method === 'clients') {
-        console.log(message);
+        
+        var clients = '';
+        for (var c = 0; c < message.clients.length; c++) {
+          clients += message.clients[c] + '\r\n';
+        }
+        
+        $('.user-count').text(message.clients.length);
+        $('.users').text(clients);
       }
-      $('.countdown').text(message.remaining);
-      $('.user-count').text(message.userCount);
+
+      if (message.method === 'countdown') {
+        $('.countdown').text(message.remaining);
+      }
     }); 
 
     socket.on('disconnect', function(){ 
