@@ -47,8 +47,8 @@ if (!module.parent) {
 var socket = io.listen(app);
 games.acceptClients(socket);
 
-var gameClients = gameClients.createClients(socket);
-gameClients.startIntergamePeriod();
+//var gameClients = gameClients.createClients(socket);
+//gameClients.startIntergamePeriod();
 
 
 // Exit if any js file or template file is changed.

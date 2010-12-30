@@ -11,7 +11,10 @@ require(['urlparser', 'socket.io/socket.io.js'], function(urlParser) {
         user: user}));
     });
     
-    socket.on('message', function(message){ 
+    socket.on('message', function(message) {
+      if (message.method === 'clients') {
+        console.log(message);
+      }
       $('.countdown').text(message.remaining);
       $('.user-count').text(message.userCount);
     }); 
