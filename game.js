@@ -1,15 +1,18 @@
+const EventEmitter = require('events').EventEmitter;
 
-exports.createGame = function() {
+const Game = function() {
   var that = this;
   var clients = {};
   var numberOfClients = 0;
   var inProgess = false;
-  var timeToStart = 10;
+  var timeToStart = 5;
   var timeToEnd = 10;
 
   var gameStartCountdownTimerId = setInterval(gameStartCountdown, 1000);
   var gameEndCountdownTimerId;
 
+  var eventEmitter = new EventEmitter();
+  
   function removeClient(client) {
     delete clients[client.sessionId];
     numberOfClients--;
@@ -63,6 +66,8 @@ exports.createGame = function() {
   }
   
   function startGame() {
+    eventEmitter.emit('started');
+    
     gameEndCountdownTimerId = setInterval(gameEndCountdown, 1000);
   }
   
@@ -80,6 +85,16 @@ exports.createGame = function() {
   return {
     addClient: function(client) {
       addClientX(client);
+    },
+    
+    on: function(event, listener) {
+      eventEmitter.on(event, listener);
+    },
+    
+    oncw: function(event, listener) {
+      eventEmitter.once(event, listener);
     }
   };
 };
+
+exports.Game = Game;
