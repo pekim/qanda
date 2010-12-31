@@ -4,18 +4,18 @@ exports.createGame = function() {
   var clients = {};
   var numberOfClients = 0;
   var inProgess = false;
-  var timeToStart = 30;
-  var timeToEnd = 0;
+  var timeToStart = 10;
+  var timeToEnd = 10;
 
   var gameStartCountdownTimerId = setInterval(gameStartCountdown, 1000);
-  
+  var gameEndCountdownTimerId;
 
   function removeClient(client) {
     delete clients[client.sessionId];
     numberOfClients--;
     
     broadcastClients();
-  };
+  }
   
   function broadcastClients() {
     broadcast({
@@ -23,26 +23,48 @@ exports.createGame = function() {
       count: numberOfClients,
       clients: Object.keys(clients)
     });
-  };
+  }
   
   function broadcast(message) {
     for (var sessionId in clients) {
       clients[sessionId].send(message);
     }
-  };
+  }
   
   function gameStartCountdown() {
-    console.log(timeToStart);
     if (timeToStart > 0) {
       broadcast({
-        method: 'countdown',
+        method: 'status',
+        status: 'pendingGame',
         remaining: timeToStart--
       });
     } else {
       clearInterval(gameStartCountdownTimerId);
-      //startGame();
+      startGame();
     }
-  };
+  }
+
+  function gameEndCountdown() {
+    if (timeToEnd > 0) {
+      broadcast({
+        method: 'status',
+        status: 'inGame',
+        remaining: timeToEnd--
+      });
+    } else {
+      broadcast({
+        method: 'status',
+        status: 'gameOver',
+        remaining: 0
+      });
+
+      clearInterval(gameEndCountdownTimerId);
+    }
+  }
+  
+  function startGame() {
+    gameEndCountdownTimerId = setInterval(gameEndCountdown, 1000);
+  }
   
   function addClientX(client) {
     clients[client.sessionId] = client;

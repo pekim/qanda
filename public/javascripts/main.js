@@ -23,7 +23,8 @@ require(['urlparser', 'socket.io/socket.io.js'], function(urlParser) {
         $('.users').text(clients);
       }
 
-      if (message.method === 'countdown') {
+      if (message.method === 'status') {
+        $('.status').text(message.status);
         $('.countdown').text(message.remaining);
       }
     }); 
