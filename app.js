@@ -45,9 +45,8 @@ app.get('/protected', function(req, res){
   req.authenticate(['user'], function(error, authenticated) {
     res.render('protected', {
       locals: {
-        authenticated: req.isAuthenticated(),
         authDetails: req.getAuthDetails(),
-        title: 'QandA'
+        title: 'Protected page'
       }
     });
   });
