@@ -91,7 +91,7 @@ const Game = function() {
       eventEmitter.on(event, listener);
     },
     
-    oncw: function(event, listener) {
+    once: function(event, listener) {
       eventEmitter.once(event, listener);
     }
   };
