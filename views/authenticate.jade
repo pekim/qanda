@@ -1,0 +1,18 @@
+h1= title
+p Welcome to #{title}
+
+p 
+  | Authenticate please.
+
+form(action='/auth/form_callback' + redirectUrl, method='post')
+  label(for='user')
+    | Name
+  input(type='text', name='user', id='user')
+  
+  br
+  
+  label(for='password')
+    | Password
+  input(type='password', name='password', id='password')
+ 
+  input(type='submit')

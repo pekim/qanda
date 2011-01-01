@@ -4,20 +4,22 @@ require.paths.unshift(__dirname);
 /**
  * Module dependencies.
  */
-var express = require('express'),
-    io = require('socket.io'),
-    games = require('./games'),
-    gameClients = require('./game-clients');
+const express = require('express'),
+      auth = require('connect-auth'),
+      authFormStrategy = require('./auth-form-strategy');
 
-var app = module.exports = express.createServer();
+const app = module.exports = express.createServer();
 
 // Configuration
-
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.bodyDecoder());
   app.use(express.methodOverride());
+  app.use(express.cookieDecoder());
+  app.use(express.session());
+  app.use(express.compiler({ src: __dirname + '/public', enable: ['sass'] }));
+  app.use(auth(authFormStrategy()));
   app.use(app.router);
   app.use(express.staticProvider(__dirname + '/public'));
 });
@@ -39,17 +41,25 @@ app.get('/', function(req, res){
   });
 });
 
+app.get('/protected', function(req, res){
+  req.authenticate(['user'], function(error, authenticated) {
+//    console.log(require('util').inspect(req, 5));
+    console.log(req.isAuthenticated());
+    console.log(req.getAuthDetails());
+    res.render('protected', {
+      locals: {
+        authenticated: req.isAuthenticated(),
+        authDetails: req.getAuthDetails(),
+        title: 'QandA'
+      }
+    });
+  });
+});
+
 if (!module.parent) {
   app.listen(3000);
   console.log("Express server listening on port %d", app.address().port)
 }
-
-var socket = io.listen(app);
-games.acceptClients(socket);
-
-//var gameClients = gameClients.createClients(socket);
-//gameClients.startIntergamePeriod();
-
 
 // Exit if any js file or template file is changed.
 // It is ok because this script encapsulated in a batch while(true);

@@ -4,4 +4,9 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src="/javascripts/requireplugins-jquery-1.4.4.js", data-main="main") 
-  body!= body
+  body
+    #header
+      #{authenticated}
+      #{authDetails.user.name}
+    
+    != body
