@@ -5,10 +5,11 @@ require.paths.unshift(__dirname);
  * Module dependencies.
  */
 const express = require('express'),
+      routes = require('./routes'),
       auth = require('connect-auth'),
       authFormStrategy = require('./auth-form-strategy');
 
-const app = module.exports = express.createServer();
+const app = express.createServer();
 
 // Configuration
 app.configure(function(){
@@ -33,31 +34,7 @@ app.configure('production', function(){
 });
 
 // Routes
-app.get('/', function(req, res){
-  res.render('index', {
-    locals: {
-      title: 'QandA'
-    }
-  });
-});
-
-app.get('/protected', function(req, res){
-  req.authenticate(['user'], function(error, authenticated) {
-    res.render('protected', {
-      locals: {
-        authDetails: req.getAuthDetails(),
-        title: 'Protected page'
-      }
-    });
-  });
-});
-
-app.get('/logout', function(req, res){
-  req.logout();
-
-  res.writeHead(303, { 'Location': "/" });
-  res.end('');
-});
+routes.apply(app);
 
 if (!module.parent) {
   app.listen(3000);
