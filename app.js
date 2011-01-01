@@ -9,8 +9,6 @@ const express = require('express'),
       auth = require('connect-auth'),
       authFormStrategy = require('./auth-form-strategy');
 
-const User = require('./user');
-
 const app = express.createServer();
 
 // Configuration

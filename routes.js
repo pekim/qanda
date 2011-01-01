@@ -1,4 +1,4 @@
-const User = require('./user');
+const User = require('./mongo/user');
 
 exports.apply = function(app) {
   app.get('/', function(req, res) {
