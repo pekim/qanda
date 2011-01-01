@@ -1,13 +1,13 @@
 // Make local paths accessible.
-require.paths.unshift(__dirname);
+require.paths.unshift(__dirname + '/lib');
 
 /**
  * Module dependencies.
  */
 const express = require('express'),
-      routes = require('./routes'),
+      routes = require('routes'),
       auth = require('connect-auth'),
-      authFormStrategy = require('./auth-form-strategy');
+      authFormStrategy = require('auth-form-strategy');
 
 const app = express.createServer();
 
