@@ -74,8 +74,8 @@ module.exports= function(options) {
           locals: {
 //            authenticated: request.isAuthenticated(),
 //            authDetails: request.getAuthDetails(),
-            authenticated: '?',
-            authDetails: {user: {}},
+//            authenticated: '?',
+//            authDetails: {user: {}},
             title: 'qQandA',
             redirectUrl: redirectUrl
           }

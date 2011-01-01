@@ -6,7 +6,7 @@ html
     script(src="/javascripts/requireplugins-jquery-1.4.4.js", data-main="main") 
   body
     #header
-      #{authenticated}
-      #{authDetails.user.name}
+      - if (typeof authDetails !== 'undefined')
+        #{authDetails.user.name}
     
     != body
