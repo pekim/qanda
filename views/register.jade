@@ -1,3 +1,6 @@
+script(src="/javascript/requireplugins-jquery-1.4.4.js", data-main="register") 
+//- script(src='/javascript/register.js')
+
 h1 Register Account
 
 form(action=actionUrl, method='post', autocomplete='off')
@@ -7,14 +10,17 @@ form(action=actionUrl, method='post', autocomplete='off')
         label(for='user') User name
       td
         input(type='text', name='user', id='user')
+      td.validation
       td.input-comment
         | The name you'd like to be known as on QandA.
+        | Must contain only the characters a-z, A-Z, 0-9, and _ (underscore).
         
     tr
       td
         label(for='name') Real name
       td
         input(type='text', name='name', id='name')
+      td.validation
       td.input-comment
         | Your real name; at least a first name and a last name.
         | If you do not enter your real name your account may be removed.
@@ -24,14 +30,16 @@ form(action=actionUrl, method='post', autocomplete='off')
         label(for='password') Password
       td
         input(type='password', name='password', id='password')
+      td.validation
       td.input-comment
-        | The password you'd like to use.
+        | The password you'd like to use. Must be at least 6 characters.
 
     tr
       td
         label(for='password2') Repeat password
       td
         input(type='password', name='password2', id='password2')
+      td.validation
       td.input-comment
         | Must match the password entered above.
         

@@ -3,26 +3,14 @@ const mongoose = require('mongoose').Mongoose,
 
 mongoose.model('User', {
 
-  properties: ['first', 'last', 'age', 'updated_at'],
+  properties: ['user', 'name', 'password', 'updated_at'],
 
   cast: {
     age: Number,
     'nested.path': String
   },
 
-  indexes: ['first'],
-
-  setters: {
-      first: function(v){
-          return this.v.capitalize();
-      }
-  },
-
-  getters: {
-      full_name: function(){ 
-          return this.first + ' ' + this.last 
-      }
-  },
+  indexes: ['user'],
 
   methods: {
       save: function(fn){
@@ -32,8 +20,8 @@ mongoose.model('User', {
   },
 
   static: {
-      findOldPeople: function(){
-          return this.find({age: { '$gt': 70 }});
+      findByUser: function(user){
+          return this.find({user: user});
       }
   }
 

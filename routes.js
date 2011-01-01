@@ -1,5 +1,7 @@
+const User = require('./user');
+
 exports.apply = function(app) {
-  app.get('/', function(req, res){
+  app.get('/', function(req, res) {
     res.render('index', {
       locals: {
         title: 'QandA'
@@ -7,7 +9,7 @@ exports.apply = function(app) {
     });
   });
 
-  app.get('/protected', ensureUser, function(req, res){
+  app.get('/protected', ensureUser, function(req, res) {
     res.render('protected', {
       locals: {
         authDetails: req.getAuthDetails(),
@@ -16,7 +18,7 @@ exports.apply = function(app) {
     });
   });
 
-  app.get('/register', function(req, res){
+  app.get('/register', function(req, res) {
     res.render('register', {
       locals: {
         title: 'Register',
@@ -25,11 +27,17 @@ exports.apply = function(app) {
     });
   });
 
-  app.get('/logout', function(req, res){
+  app.get('/logout', function(req, res) {
     req.logout();
 
     res.writeHead(303, { 'Location': "/" });
     res.end('');
+  });
+
+  app.get('/checkIfUserUsed/:user', function(req, res){
+    User.findByUser(req.params.user).exec().first(function(user) {
+      res.send(user ? 'Already in use' : '');
+    });
   });
 }
 
