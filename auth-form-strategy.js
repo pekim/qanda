@@ -72,11 +72,7 @@ module.exports= function(options) {
         
         response.render('authenticate', {
           locals: {
-//            authenticated: request.isAuthenticated(),
-//            authDetails: request.getAuthDetails(),
-//            authenticated: '?',
-//            authDetails: {user: {}},
-            title: 'qQandA',
+            title: 'Authenticate',
             redirectUrl: redirectUrl
           }
         });
