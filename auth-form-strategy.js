@@ -39,7 +39,6 @@ module.exports= function(options) {
   }
   
   strategy.authenticate = function(request, response, callback) {
-    console.log(require('util').inspect(this, 5));
     if (request.body && request.body.user && request.body.password) { 
       validate_credentials(this, request, response, callback);
     } else {

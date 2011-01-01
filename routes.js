@@ -7,14 +7,12 @@ exports.apply = function(app) {
     });
   });
 
-  app.get('/protected', function(req, res){
-    req.authenticate(['user'], function(error, authenticated) {
-      res.render('protected', {
-        locals: {
-          authDetails: req.getAuthDetails(),
-          title: 'Protected page'
-        }
-      });
+  app.get('/protected', ensureUser, function(req, res){
+    res.render('protected', {
+      locals: {
+        authDetails: req.getAuthDetails(),
+        title: 'Protected page'
+      }
     });
   });
 
@@ -23,5 +21,11 @@ exports.apply = function(app) {
 
     res.writeHead(303, { 'Location': "/" });
     res.end('');
+  });
+}
+
+function ensureUser(req, res, next) {
+  req.authenticate(['user'], function(error, authenticated) {
+    next();
   });
 }
