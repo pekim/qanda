@@ -43,9 +43,6 @@ app.get('/', function(req, res){
 
 app.get('/protected', function(req, res){
   req.authenticate(['user'], function(error, authenticated) {
-//    console.log(require('util').inspect(req, 5));
-    console.log(req.isAuthenticated());
-    console.log(req.getAuthDetails());
     res.render('protected', {
       locals: {
         authenticated: req.isAuthenticated(),
@@ -54,6 +51,13 @@ app.get('/protected', function(req, res){
       }
     });
   });
+});
+
+app.get('/logout', function(req, res){
+  req.logout();
+
+  res.writeHead(303, { 'Location': "/" });
+  res.end('');
 });
 
 if (!module.parent) {
