@@ -1,29 +1,38 @@
-h1 #{title}
+h1 Register Account
 
-form(action=actionUrl, method='post')
+form(action=actionUrl, method='post', autocomplete='off')
   table
     tr
       td
-        label(for='user')
-          | User name
+        label(for='user') User name
       td
         input(type='text', name='user', id='user')
+      td.input-comment
+        | The name you'd like to be known as on QandA.
+        
     tr
       td
-        label(for='name')
-          | Real name
+        label(for='name') Real name
       td
         input(type='text', name='name', id='name')
-        
+      td.input-comment
+        | Your real name; at least a first name and a last name.
+        | If you do not enter your real name your account may be removed.
 
-  label(for='user')
-    | Name
-  input(type='text', name='user', id='user')
-  
-  br
-  
-  label(for='password')
-    | Password
-  input(type='password', name='password', id='password')
- 
+    tr
+      td
+        label(for='password') Password
+      td
+        input(type='password', name='password', id='password')
+      td.input-comment
+        | The password you'd like to use.
+
+    tr
+      td
+        label(for='password2') Repeat password
+      td
+        input(type='password', name='password2', id='password2')
+      td.input-comment
+        | Must match the password entered above.
+        
   input(type='submit')

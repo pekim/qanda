@@ -1,4 +1,10 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;}
+
+label {
+  font-weight: bold;}
+
+.input-comment {
+  font-style: italic;
+  color: gray;}
