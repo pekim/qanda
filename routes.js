@@ -16,6 +16,15 @@ exports.apply = function(app) {
     });
   });
 
+  app.get('/register', function(req, res){
+    res.render('register', {
+      locals: {
+        title: 'Register',
+        actionUrl: '/register'
+      }
+    });
+  });
+
   app.get('/logout', function(req, res){
     req.logout();
 
