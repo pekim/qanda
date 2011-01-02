@@ -3,10 +3,17 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    //- script(src="/javascript/requireplugins-jquery-1.4.4.js", data-main="main") 
   body
     #header
-      - if (typeof authDetails === 'object' && typeof authDetails.user === 'object')
-        #{authDetails.user.name}
+      - if (this.getAuthDetails() && this.getAuthDetails().user)
+        = this.getAuthDetails().user.name
+        &nbsp;
+        a(href="/logout") logout
+      - else
+        | login
+      p
+        = this.url
     
     != body
+
+    //!= partial('dump-this')
