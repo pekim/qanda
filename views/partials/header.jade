@@ -4,6 +4,4 @@
     &nbsp;
     a(href="/logout") logout
   - else
-    | login
-  p
-    = this.url
+    a(href=this.app.settings.createAuthenticateUrl(this.url)) login

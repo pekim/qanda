@@ -7,7 +7,7 @@ require.paths.unshift(__dirname + '/lib');
 const express = require('express'),
       routes = require('routes'),
       auth = require('connect-auth'),
-      authFormStrategy = require('auth-form-strategy');
+      authFormStrategy = require('auth-form-strategy')();
 
 const app = express.createServer();
 
@@ -15,12 +15,13 @@ const app = express.createServer();
 app.configure(function() {
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.set('createAuthenticateUrl', authFormStrategy.createAuthenticateUrl);
   app.use(express.bodyDecoder());
   app.use(express.methodOverride());
   app.use(express.cookieDecoder());
   app.use(express.session());
   app.use(express.compiler({ src: __dirname + '/public', enable: ['sass'] }));
-  app.use(auth(authFormStrategy()));
+  app.use(auth(authFormStrategy));
   app.use(app.router);
   app.use(express.staticProvider(__dirname + '/public'));
 });
