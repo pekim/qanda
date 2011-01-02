@@ -11,7 +11,7 @@ while true;
   cd $script_directory;
   
   #node app.js $* > log/nodejs.log 2>&1;
-  node app.js $*;
+  node --debug app.js $*;
 
   exit_value="$?" ;
   echo stopping $(date);
