@@ -4,7 +4,7 @@ p Welcome to #{title}
 p 
   | Authenticate please.
 
-form(action='/auth/form_callback' + redirectUrl, method='post')
+form(action=action, method='post')
   label(for='user')
     | Name
   input(type='text', name='user', id='user')
