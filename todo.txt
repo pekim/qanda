@@ -1,0 +1,4 @@
+last login time in User
+
+Consistently add 'authDetails' to locals for all views.
+
