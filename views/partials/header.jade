@@ -5,7 +5,7 @@
   .loginout
     - if (this.getAuthDetails() && this.getAuthDetails().user)
       = this.getAuthDetails().user.name
-      &nbsp;
+      &nbsp;|&nbsp; 
       a(href="/logout") logout
     - else
       a(href=this.app.settings.createAuthenticateUrl(this.url)) login

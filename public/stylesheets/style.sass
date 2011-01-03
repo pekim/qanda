@@ -1,5 +1,24 @@
-!background = #000060
-!foreground = white
+primary_1: #0A67A3
+primary_2: #24587A
+primary_3: #03426A
+primary_4: #3E97D1
+primary_5: #65A6D1
+secondaryA_1: #FFBC00
+secondaryA_2: #BF9A30
+secondaryA_3: #A67A00
+secondaryA_4: #FFCD40
+secondaryA_5: #FFDA73
+secondaryB_1: #FF4100
+secondaryB_2: #BF5430
+secondaryB_3: #A62A00
+secondaryB_4: #FF7140
+secondaryB_5: #FF9773
+
+!background = white
+!foreground = black
+
+layoutPadding: 0.5
+navWidth: 6
 
 body
   :padding 0.5em
@@ -14,17 +33,35 @@ a
 #header
   :position relative
   :border-bottom solid 1px {foreground}
+  :padding {layoutPadding}em
   :margin-bottom 0.5em
+  :background-color {primary_4}
   .title
     :font-size 1.8em
     :font-weight bold
+    :font-style italic
     a
-      :color {foreground}
+      :color {primary_3}
       :text-decoration none
   .loginout
     :position absolute
-    :top 0
-    :right 0
+    :bottom 0.5em
+    :right 0.5em
+    :color white
+    a
+      :color white
+
+#nav
+  :float left
+  :width {navWidth}em
+  :padding {layoutPadding}em
+  :background-color {secondaryA_3}
+  :color {secondaryA_5}
+
+#content
+  :margin-left {parseFloat(layoutPadding) + parseFloat(navWidth) + parseFloat(layoutPadding)}em
+  :padding-left {layoutPadding}em
+  :padding-right {layoutPadding}em
 
 label
   :font-weight bold
@@ -35,3 +72,9 @@ label
   
 .validation
   :color red
+
+h1, h2, h3, h4, h5, h6
+  :font-weight bold
+
+h1
+  :font-size 1.5em;  
