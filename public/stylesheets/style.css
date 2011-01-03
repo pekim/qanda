@@ -15,7 +15,8 @@ a {
   font-size: 1.8em;
   font-weight: bold;}
 #header .title a {
-  color: white;}
+  color: white;
+  text-decoration: none;}
 #header .loginout {
   position: absolute;
   top: 0;
