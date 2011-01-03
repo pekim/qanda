@@ -16,4 +16,6 @@ table
       td= user.created_at
       td= user.authenticated_at
       td= user.updated_at
+      td
+        a(href="/deleteuser/" + user.user) delete
       
