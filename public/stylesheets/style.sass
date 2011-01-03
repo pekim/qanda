@@ -18,7 +18,7 @@ secondaryB_5: #FF9773
 !foreground = black
 
 layoutPadding: 0.5
-navWidth: 6
+navWidth: 8
 
 body
   :padding 0.5em
@@ -59,6 +59,8 @@ a
   :padding {layoutPadding}em
   :background-color {secondaryA_3}
   :color {secondaryA_5}
+  a
+    :color {secondaryA_5}
 
 #content
   :margin-left {parseFloat(layoutPadding) + parseFloat(navWidth) + parseFloat(layoutPadding)}em
