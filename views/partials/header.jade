@@ -1,7 +1,11 @@
 #header
-  - if (this.getAuthDetails() && this.getAuthDetails().user)
-    = this.getAuthDetails().user.name
-    &nbsp;
-    a(href="/logout") logout
-  - else
-    a(href=this.app.settings.createAuthenticateUrl(this.url)) login
+  .title
+    a(href="/") QandA
+
+  .loginout
+    - if (this.getAuthDetails() && this.getAuthDetails().user)
+      = this.getAuthDetails().user.name
+      &nbsp;
+      a(href="/logout") logout
+    - else
+      a(href=this.app.settings.createAuthenticateUrl(this.url)) login

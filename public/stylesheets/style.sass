@@ -1,9 +1,29 @@
+!background = #000060
+!foreground = white
+
 body
-  :padding 50px
+  :padding 0.5em
   :font 14px "Lucida Grande", Helvetica, Arial, sans-serif
+  
+  :color {foreground}
+  :background-color {background}
+
+a
+  :color red
 
 #header
-  :border-bottom solid 1px black
+  :position relative
+  :border-bottom solid 1px {foreground}
+  :margin-bottom 0.5em
+  .title
+    :font-size 1.8em
+    :font-weight bold
+    a
+      :color {foreground}
+  .loginout
+    :position absolute
+    :top 0
+    :right 0
 
 label
   :font-weight bold

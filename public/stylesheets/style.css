@@ -1,9 +1,25 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;}
+  padding: 0.5em;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: white;
+  background-color: #000060;}
+
+a {
+  color: red;}
 
 #header {
-  border-bottom: solid 1px black;}
+  position: relative;
+  border-bottom: solid 1px white;
+  margin-bottom: 0.5em;}
+#header .title {
+  font-size: 1.8em;
+  font-weight: bold;}
+#header .title a {
+  color: white;}
+#header .loginout {
+  position: absolute;
+  top: 0;
+  right: 0;}
 
 label {
   font-weight: bold;}
