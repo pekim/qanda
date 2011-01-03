@@ -1,2 +1,5 @@
 
 .project
+
+public/stylesheets/*.css
+!public/stylesheets/reset.css
