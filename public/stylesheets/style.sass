@@ -28,7 +28,9 @@ body
   :background-color {background}
 
 a
-  :color red
+  :border solid transparent 1px
+  &:focus
+    :border dotted 1px
 
 #header
   :position relative
@@ -77,4 +79,7 @@ h1, h2, h3, h4, h5, h6
   :font-weight bold
 
 h1
-  :font-size 1.5em;  
+  :font-size 1.5em;
+  
+table
+  th
